@@ -132,26 +132,29 @@
     .layout {
       display: flex;
       flex-direction: row;
-      gap: 0;
-      min-height: calc(100vh - 72px);
+      gap: 12px;
+      max-width: 1600px;
+      margin: 12px auto 16px;
+      padding: 0 16px;
+      align-items: flex-start;
     }
 
     .left-panel {
-      width: 420px;
-      min-width: 420px;
+      width: 400px;
+      min-width: 360px;
       flex-shrink: 0;
-      border-right: 1px solid var(--border);
-      padding: 16px;
+      border-right: none;
+      padding: 0;
       display: flex;
       flex-direction: column;
       gap: 12px;
-      background: linear-gradient(180deg, rgba(22, 27, 34, 0.97) 0%, rgba(13, 17, 23, 0.95) 100%);
+      background: transparent;
     }
 
     .right-panel {
       flex: 1;
       min-width: 0;
-      padding: 16px;
+      padding: 0;
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto auto auto auto;
@@ -677,7 +680,7 @@
       border-radius: 999px;
     }
 
-    details.edu-section {
+    .edu-section {
       border: 1px solid var(--border);
       border-radius: 8px;
       background: rgba(13, 17, 23, 0.45);
@@ -686,7 +689,7 @@
     }
 
     .edu-title {
-      cursor: pointer;
+      cursor: default;
       font-weight: 700;
       padding: 10px;
       border-bottom: 1px solid transparent;
@@ -849,6 +852,8 @@
 
       .layout {
         flex-direction: column;
+        margin: 10px auto 14px;
+        padding: 0 12px;
       }
 
       .header-tabs {
@@ -859,8 +864,7 @@
         width: 100%;
         min-width: 0;
         max-height: none;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+        border-bottom: none;
       }
 
       .right-panel {
@@ -923,6 +927,74 @@
       </div>
     </details>
   </section>
+  <section class="algo-overview-wrap">
+    <details class="algo-overview" open>
+      <summary class="algo-overview-summary">
+        <span>Educational Content & Learning Guide</span>
+        <span class="overview-toggle" aria-hidden="true"></span>
+      </summary>
+      <div class="algo-overview-body">
+        <section class="panel">
+          <div class="panel-body">
+            <div class="concept-box">
+              <div class="concept-title">Key Insight: Optimum At A Vertex</div>
+              <div>The feasible set is a convex polygon in 2D. If an optimum exists, at least one optimal solution is a vertex of that polygon, so moving vertex-to-vertex is sufficient.</div>
+            </div>
+
+            <div class="edu-section" style="margin-top: 10px;">
+              <div class="edu-title">Problem Formulation (Real Scenario)</div>
+              <div class="edu-body">
+                <p><strong>Scenario:</strong> A factory produces two products, A and B. Each unit uses limited resources (machines, labor, material). The goal is to maximize profit.</p>
+                <p><strong>Inputs:</strong> <code>c1</code> and <code>c2</code> are profit per unit of A and B. Each constraint row is one resource limit (e.g., machine hours).</p>
+                <p><strong>Decision variables:</strong> <code>x1</code> = units of product A, <code>x2</code> = units of product B.</p>
+                <p><strong>Output:</strong> The optimal mix <code>(x1, x2)</code> and the maximum profit <code>z*</code>.</p>
+              </div>
+            </div>
+
+            <div class="edu-section" style="margin-top: 10px;">
+              <div class="edu-title">Algorithm Selection: Why LP + Simplex</div>
+              <div class="edu-body">
+                <p><strong>Why LP:</strong> All relationships are linear (profits and resource usage scale linearly with production).</p>
+                <p><strong>Why Simplex:</strong> It navigates vertex-to-vertex on the feasible polygon and guarantees optimality when reduced costs are nonnegative.</p>
+                <p><strong>When it does not apply:</strong> Nonlinear constraints/objectives, nonconvex regions, or integer-only requirements without relaxation.</p>
+              </div>
+            </div>
+
+            <div class="concept-box" style="margin-top: 10px;">
+              <div class="concept-title">Execution & Correctness (Why It Works)</div>
+              <div>
+                The feasible region is convex, and any optimum occurs at a vertex. Simplex pivots along edges to improve the objective. When all reduced costs are nonnegative, no adjacent vertex improves the objective, so the current solution is optimal. Dual feasibility and a near-zero duality gap confirm correctness.
+              </div>
+            </div>
+
+            <div class="edu-section" style="margin-top: 10px;">
+              <div class="edu-title">Decision Trace: Entering/Leaving Rules</div>
+              <div class="edu-body">
+                <p><strong>Entering variable:</strong> Choose the most negative reduced cost (Largest Coefficient rule) or the smallest index with negative reduced cost (Bland's rule).</p>
+                <p><strong>Leaving variable:</strong> Use the minimum ratio test <code>b_i / a_ij</code> for rows with <code>a_ij &gt; 0</code> to keep feasibility.</p>
+                <p>These decisions are shown step-by-step in the explanation panel and the highlighted tableau.</p>
+              </div>
+            </div>
+
+            <div class="edu-section" style="margin-top: 10px;">
+              <div class="edu-title">Worked Example (Preset 1)</div>
+              <div class="worked-box">Maximize z = 5x1 + 4x2
+Subject to:
+6x1 + 4x2 <= 24
+x1 + 2x2 <= 6
+x1, x2 >= 0
+
+Vertices: (0,0), (4,0), (0,3), (3,1.5)
+Objective values:
+z(0,0)=0, z(4,0)=20, z(0,3)=12, z(3,1.5)=21
+
+Optimal solution: x1=3, x2=1.5, z*=21</div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </details>
+  </section>
   <main class="layout">
     <aside class="left-panel">
       <section class="panel" id="inputPanel">
@@ -959,7 +1031,7 @@
             <button class="preset-btn" type="button" id="preset4" title="Degenerate LP (ratio tie)">Degenerate</button>
           </div>
           <div class="small-note" style="margin-top: 6px;">
-            Presets: Basic LP, Unbounded, Infeasible, Degenerate.
+            Presets cover standard and edge cases: Basic LP, Unbounded, Infeasible, Degenerate.
           </div>
 
           <div style="margin-top: 10px;">
@@ -1001,40 +1073,6 @@
               <div class="stat-label">Comparisons</div>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-header">Educational Content</div>
-        <div class="panel-body">
-          <details class="edu-section" open>
-            <summary class="edu-title">Algorithm Overview</summary>
-            <div class="edu-body">
-              <p><strong>What:</strong> The Simplex Method solves linear programs of the form maximize <code>z = c^T x</code> subject to linear constraints.</p>
-              <p><strong>How:</strong> It walks from one feasible vertex to another by pivoting in the tableau, always improving the objective until no improvement is possible.</p>
-              <p><strong>When:</strong> Used in operations research, logistics, production planning, scheduling, and economics.</p>
-            </div>
-          </details>
-
-          <div class="concept-box">
-            <div class="concept-title">Key Insight: Optimum At A Vertex</div>
-            <div>The feasible set is a convex polygon in 2D. If an optimum exists, at least one optimal solution is a vertex of that polygon, so moving vertex-to-vertex is sufficient.</div>
-          </div>
-
-          <details class="edu-section" style="margin-top: 10px;">
-            <summary class="edu-title">Worked Example (Preset 1)</summary>
-            <div class="worked-box">Maximize z = 5x1 + 4x2
-Subject to:
-6x1 + 4x2 <= 24
-x1 + 2x2 <= 6
-x1, x2 >= 0
-
-Vertices: (0,0), (4,0), (0,3), (3,1.5)
-Objective values:
-z(0,0)=0, z(4,0)=20, z(0,3)=12, z(3,1.5)=21
-
-Optimal solution: x1=3, x2=1.5, z*=21</div>
-          </details>
         </div>
       </section>
     </aside>
@@ -2256,12 +2294,15 @@ Both obtain shared secret S = 2.</div>
         if (entering === -1) {
           const lastDual = computeDualSnapshot(model, basis);
           const strongGap = lastDual ? Math.abs(lastDual.dualObj - tableau[tableau.length - 1][tableau[0].length - 1]) : null;
+          const strongNote = strongGap !== null
+            ? (strongGap < 1e-6 ? " Strong Duality Verified." : " Strong Duality Check: gap not yet near zero.")
+            : "";
           pushStep({
             pseudoLine: 11,
             action: sawDegenerate ? "Optimal (Degenerate Path)" : "Optimal",
             detail: "No negative reduced costs remain.",
             explanation: strongGap !== null
-              ? `Optimal solution found. Strong duality gap |z - b^T y| = ${strongGap.toExponential(2)}.`
+              ? `Optimal solution found. Strong duality gap |z - b^T y| = ${strongGap.toExponential(2)}.${strongNote}`
               : "Optimal solution found.",
             status: "done"
           });
