@@ -730,6 +730,94 @@
       white-space: pre-wrap;
     }
 
+    .insight-box {
+      border: 1px solid rgba(88, 166, 255, 0.55);
+      border-radius: 8px;
+      background: rgba(88, 166, 255, 0.08);
+      padding: 10px;
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+
+    .insight-title {
+      color: var(--accent-blue);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .comparison-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: rgba(13, 17, 23, 0.52);
+      padding: 8px;
+    }
+
+    .comparison-title {
+      font-size: 11px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 5px;
+    }
+
+    .comparison-value {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .comparison-value.good {
+      color: var(--accent-green);
+    }
+
+    .comparison-value.warn {
+      color: var(--accent-yellow);
+    }
+
+    .parallel-control-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .mini-note {
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.4;
+      margin-top: 8px;
+    }
+
+    .test-controls {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .test-summary {
+      margin-top: 8px;
+      color: var(--text-secondary);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .attack-box {
+      border: 1px solid rgba(88, 166, 255, 0.55);
+      border-radius: 8px;
+      background: rgba(88, 166, 255, 0.08);
+      padding: 10px;
+      margin-top: 10px;
+      line-height: 1.45;
+    }
+
     .duality-box {
       border: 1px solid rgba(57, 211, 83, 0.6);
       border-radius: 8px;
@@ -1154,6 +1242,40 @@ Optimal solution: x1=3, x2=1.5, z*=21</div>
         </div>
       </details>
     </section>
+    <section class="algo-overview-wrap">
+      <details class="algo-overview" open>
+        <summary class="algo-overview-summary">
+          <span>Educational Content & Learning Guide</span>
+          <span class="overview-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="algo-overview-body">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="insight-box" id="s2_problemBox">
+                <div class="insight-title">Computational Problem Context</div>
+                <div>Build steps to generate a concrete problem statement and algorithm fit.</div>
+              </div>
+              <div class="concept-box">
+                <div class="concept-title">Key Insight: 7 Independent Subproducts</div>
+                <div>P1 to P7 have no mutual data dependency after partitioning. This enables parallel evaluation.</div>
+              </div>
+              <div class="insight-box" id="s2_depthBox">
+                <div class="insight-title">Complexity and Depth Reasoning</div>
+                <div>Recurrence, work, and span analysis will appear after Build Steps.</div>
+              </div>
+              <section class="edu-section" style="margin-top: 10px;">
+                <div class="edu-title">Worked Example (2x2)</div>
+                <div class="worked-box">A = [1 2; 3 4], B = [5 6; 7 8]
+P1=(1+4)(5+8)=65, P2=(3+4)5=35, P3=1(6-8)=-2
+P4=4(7-5)=8, P5=(1+2)8=24, P6=(3-1)(5+6)=22, P7=(2-4)(7+8)=-30
+C11=65+8-24-30=19, C12=-2+24=22
+C21=35+8=43, C22=65-35-2+22=50</div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </details>
+    </section>
     <main class="layout">
       <aside class="left-panel">
         <section class="panel">
@@ -1226,32 +1348,6 @@ Optimal solution: x1=3, x2=1.5, z*=21</div>
             </div>
           </div>
         </section>
-
-        <section class="panel">
-          <div class="panel-header">Educational Content</div>
-          <div class="panel-body">
-            <details class="edu-section" open>
-              <summary class="edu-title">Algorithm Overview</summary>
-              <div class="edu-body">
-                <p><strong>What:</strong> Strassen multiplies matrices faster than classical O(n^3) multiplication by reducing 8 block products to 7.</p>
-                <p><strong>How:</strong> Partition A and B into quadrants, compute P1..P7, then recombine C11..C22.</p>
-                <p><strong>When:</strong> Useful on sufficiently large matrices where reduced multiplication count offsets extra addition overhead.</p>
-              </div>
-            </details>
-            <div class="concept-box">
-              <div class="concept-title">Key Insight: 7 Independent Subproducts</div>
-              <div>P1 to P7 have no mutual data dependency after partitioning. This enables parallel evaluation.</div>
-            </div>
-            <details class="edu-section" style="margin-top: 10px;">
-              <summary class="edu-title">Worked Example (2x2)</summary>
-              <div class="worked-box">A = [1 2; 3 4], B = [5 6; 7 8]
-P1=(1+4)(5+8)=65, P2=(3+4)5=35, P3=1(6-8)=-2
-P4=4(7-5)=8, P5=(1+2)8=24, P6=(3-1)(5+6)=22, P7=(2-4)(7+8)=-30
-C11=65+8-24-30=19, C12=-2+24=22
-C21=35+8=43, C22=65-35-2+22=50</div>
-            </details>
-          </div>
-        </section>
       </aside>
 
       <section class="right-panel">
@@ -1271,6 +1367,64 @@ C21=35+8=43, C22=65-35-2+22=50</div>
           <div class="panel-body">
             <svg id="s2_treeSvg" viewBox="0 0 1100 230" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-secondary);"></svg>
             <svg id="s2_chartSvg" viewBox="0 0 1100 240" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; margin-top: 10px; background: var(--bg-secondary);"></svg>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-header">Naive vs Strassen + Parallel Efficiency</div>
+          <div class="panel-body">
+            <div class="comparison-grid">
+              <div class="comparison-card">
+                <div class="comparison-title">Naive Multiplications</div>
+                <div class="comparison-value" id="s2_cmpNaiveMul">-</div>
+              </div>
+              <div class="comparison-card">
+                <div class="comparison-title">Strassen Multiplications</div>
+                <div class="comparison-value" id="s2_cmpStrassenMul">-</div>
+              </div>
+              <div class="comparison-card">
+                <div class="comparison-title">Naive Additions</div>
+                <div class="comparison-value" id="s2_cmpNaiveAdd">-</div>
+              </div>
+              <div class="comparison-card">
+                <div class="comparison-title">Strassen Additions</div>
+                <div class="comparison-value" id="s2_cmpStrassenAdd">-</div>
+              </div>
+              <div class="comparison-card">
+                <div class="comparison-title">Multiplication Reduction</div>
+                <div class="comparison-value" id="s2_cmpMulReduction">-</div>
+              </div>
+              <div class="comparison-card">
+                <div class="comparison-title">Top-level Parallel Speedup</div>
+                <div class="comparison-value" id="s2_cmpParallelSpeedup">-</div>
+              </div>
+            </div>
+
+            <div class="parallel-control-row">
+              <div>
+                <label class="label" for="s2_workerCount">Parallel Workers</label>
+                <select id="s2_workerCount">
+                  <option value="1">1 worker (sequential)</option>
+                  <option value="2">2 workers</option>
+                  <option value="4">4 workers</option>
+                  <option value="7">7 workers (max P1..P7 parallel)</option>
+                </select>
+              </div>
+              <div>
+                <label class="label" for="s2_parallelLevel">Parallel Level</label>
+                <select id="s2_parallelLevel">
+                  <option value="top">Top-level P1..P7</option>
+                  <option value="recursive">Recursive estimate</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="insight-box" id="s2_parallelBox" style="margin-top: 10px;">
+              <div class="insight-title">Parallel Work Distribution</div>
+              <div>Build steps to estimate makespan and efficiency.</div>
+            </div>
+
+            <div class="mini-note" id="s2_compareNote">Build steps to compare operation counts for this exact matrix input.</div>
           </div>
         </section>
 
@@ -1327,6 +1481,37 @@ C21=35+8=43, C22=65-35-2+22=50</div>
         </div>
       </details>
     </section>
+    <section class="algo-overview-wrap">
+      <details class="algo-overview" open>
+        <summary class="algo-overview-summary">
+          <span>Educational Content & Learning Guide</span>
+          <span class="overview-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="algo-overview-body">
+          <section class="panel">
+            <div class="panel-body">
+              <div class="concept-box" style="margin-top: 10px;">
+                <div class="concept-title">Key Insight: Discrete Logarithm Hardness</div>
+                <div>Eve can observe <code>g</code>, <code>p</code>, <code>A</code>, and <code>B</code>, but recovering <code>a</code> from <code>A = g^a mod p</code> is computationally hard for large primes.</div>
+              </div>
+
+              <div class="dlp-box" id="s3_dlpBox"></div>
+
+              <section class="edu-section" style="margin-top: 10px;">
+                <div class="edu-title">Worked Example (Preset 1)</div>
+                <div class="worked-box">p=23, g=5, a=6, b=15
+A = 5^6 mod 23 = 8
+B = 5^15 mod 23 = 19
+Alice computes S = 19^6 mod 23 = 2
+Bob computes S = 8^15 mod 23 = 2
+
+Both obtain shared secret S = 2.</div>
+              </section>
+            </div>
+          </section>
+        </div>
+      </details>
+    </section>
     <main class="layout">
       <aside class="left-panel">
         <section class="panel">
@@ -1349,6 +1534,27 @@ C21=35+8=43, C22=65-35-2+22=50</div>
                 <label class="label" for="s3_b">Bob Secret b</label>
                 <input id="s3_b" type="number" min="1" step="1" value="15" />
               </div>
+            </div>
+
+            <div style="margin-top: 10px;">
+              <label class="label" for="s3_plaintext">Plaintext Message</label>
+              <textarea id="s3_plaintext" rows="2" maxlength="120" placeholder="Type a short message to encrypt with the derived shared key.">HELLO DIFFIE-HELLMAN</textarea>
+            </div>
+
+            <div class="grid-2" style="margin-top: 10px;">
+              <div>
+                <label class="label" for="s3_ciphertext">Ciphertext (Derived)</label>
+                <textarea id="s3_ciphertext" rows="2" readonly></textarea>
+              </div>
+              <div>
+                <label class="label" for="s3_decrypted">Decrypted Message</label>
+                <textarea id="s3_decrypted" rows="2" readonly></textarea>
+              </div>
+            </div>
+
+            <div class="status-wrap" style="margin-top: 10px;">
+              <div class="step-counter">Session Key Shift <span id="s3_sessionKey">-</span></div>
+              <div class="status-badge" id="s3_roundtripBadge">No Roundtrip Yet</div>
             </div>
 
             <div style="margin-top: 8px;">
@@ -1400,41 +1606,54 @@ C21=35+8=43, C22=65-35-2+22=50</div>
                 <div class="stat-value" id="s3_cntMultiplications">0</div>
                 <div class="stat-label">Multiplications</div>
               </div>
+              <div class="stat-item">
+                <div class="stat-value" id="s3_lastRuntimeMs">0.00</div>
+                <div class="stat-label">Last Runtime (ms)</div>
+              </div>
             </div>
           </div>
         </section>
 
         <section class="panel">
-          <div class="panel-header">Educational Content</div>
+          <div class="panel-header">Testing + Security Lab</div>
           <div class="panel-body">
-            <details class="edu-section" open>
-              <summary class="edu-title">Algorithm Overview</summary>
-              <div class="edu-body">
-                <p><strong>What:</strong> Alice and Bob agree on one shared secret over a public channel without sending the secret itself.</p>
-                <p><strong>How:</strong> Both publish <code>g^secret mod p</code>, then raise the other party's public value to their own secret.</p>
-                <p><strong>When:</strong> Foundation for secure key exchange protocols in cryptographic systems.</p>
-              </div>
-            </details>
+            <label class="label" for="s3_randomCount">Random Test Cases</label>
+            <input id="s3_randomCount" type="number" min="1" max="20" step="1" value="6" />
 
-            <div class="concept-box">
-              <div class="concept-title">Key Insight: Discrete Logarithm Hardness</div>
-              <div>Eve can observe <code>g</code>, <code>p</code>, <code>A</code>, and <code>B</code>, but recovering <code>a</code> from <code>A = g^a mod p</code> is computationally hard for large primes.</div>
+            <div class="test-controls">
+              <button type="button" id="s3_testPresetBtn">Run Preset Suite</button>
+              <button type="button" id="s3_testBoundaryBtn">Run Boundary Suite</button>
+              <button type="button" id="s3_testRandomBtn">Run Random Suite</button>
+              <button type="button" id="s3_clearTestsBtn">Clear Results</button>
             </div>
 
-            <details class="edu-section" style="margin-top: 10px;">
-              <summary class="edu-title">Worked Example (Preset 1)</summary>
-              <div class="worked-box">p=23, g=5, a=6, b=15
-A = 5^6 mod 23 = 8
-B = 5^15 mod 23 = 19
-Alice computes S = 19^6 mod 23 = 2
-Bob computes S = 8^15 mod 23 = 2
+            <div class="test-summary" id="s3_testSummary">No tests executed.</div>
 
-Both obtain shared secret S = 2.</div>
-            </details>
+            <div class="history-wrapper" style="margin-top: 8px; max-height: 190px;">
+              <table class="history-table">
+                <thead>
+                  <tr><th>#</th><th>Suite</th><th>Case</th><th>Verdict</th><th>Runtime</th></tr>
+                </thead>
+                <tbody id="s3_testBody"></tbody>
+              </table>
+            </div>
 
-            <div class="dlp-box" id="s3_dlpBox"></div>
+            <div style="margin-top: 10px;" class="label">Security Scenario</div>
+            <div class="grid-2">
+              <div>
+                <select id="s3_attackScenario">
+                  <option value="mitm">Man-in-the-Middle (No Authentication)</option>
+                  <option value="weak-generator">Weak Generator (g = 1)</option>
+                </select>
+              </div>
+              <div>
+                <button type="button" id="s3_runAttackBtn">Run Scenario</button>
+              </div>
+            </div>
+            <div class="attack-box" id="s3_attackResult">Run a scenario to see how assumptions affect security.</div>
           </div>
         </section>
+
       </aside>
 
       <section class="right-panel">
@@ -1470,7 +1689,7 @@ Both obtain shared secret S = 2.</div>
             <div class="pseudocode-panel" id="s3_pseudocodePanel"></div>
             <div class="explanation-box">
               <div class="explanation-title" id="s3_explanationTitle">Step 0 - Idle</div>
-              <div class="explanation-body" id="s3_explanationBody">Provide p, g, a, b then click Build Steps.</div>
+              <div class="explanation-body" id="s3_explanationBody">Provide p, g, a, b, plaintext then click Build Steps.</div>
             </div>
           </div>
         </section>
@@ -3169,10 +3388,22 @@ Both obtain shared secret S = 2.</div>
       cntMultiplications: document.getElementById("s2_cntMultiplications"),
       cntAdditions: document.getElementById("s2_cntAdditions"),
       cntRecCalls: document.getElementById("s2_cntRecCalls"),
+      problemBox: document.getElementById("s2_problemBox"),
+      depthBox: document.getElementById("s2_depthBox"),
       vizCaption: document.getElementById("s2_vizCaption"),
       mainSvg: document.getElementById("s2_mainSvg"),
       treeSvg: document.getElementById("s2_treeSvg"),
       chartSvg: document.getElementById("s2_chartSvg"),
+      cmpNaiveMul: document.getElementById("s2_cmpNaiveMul"),
+      cmpStrassenMul: document.getElementById("s2_cmpStrassenMul"),
+      cmpNaiveAdd: document.getElementById("s2_cmpNaiveAdd"),
+      cmpStrassenAdd: document.getElementById("s2_cmpStrassenAdd"),
+      cmpMulReduction: document.getElementById("s2_cmpMulReduction"),
+      cmpParallelSpeedup: document.getElementById("s2_cmpParallelSpeedup"),
+      workerCount: document.getElementById("s2_workerCount"),
+      parallelLevel: document.getElementById("s2_parallelLevel"),
+      parallelBox: document.getElementById("s2_parallelBox"),
+      compareNote: document.getElementById("s2_compareNote"),
       legend: document.getElementById("s2_legend"),
       pseudocodePanel: document.getElementById("s2_pseudocodePanel"),
       explanationTitle: document.getElementById("s2_explanationTitle"),
@@ -3306,6 +3537,71 @@ Both obtain shared secret S = 2.</div>
         }
       }
       return out;
+    }
+
+    function multiplyNaiveNxN(a, b) {
+      const n = a.length;
+      const counters = { multiplications: 0, additions: 0 };
+      const out = Array.from({ length: n }, () => new Array(n).fill(0));
+      for (let i = 0; i < n; i += 1) {
+        for (let j = 0; j < n; j += 1) {
+          let sum = 0;
+          for (let k = 0; k < n; k += 1) {
+            sum += a[i][k] * b[k][j];
+            counters.multiplications += 1;
+            if (k > 0) {
+              counters.additions += 1;
+            }
+          }
+          out[i][j] = sum;
+        }
+      }
+      return { matrix: out, counters };
+    }
+
+    function matricesAlmostEqual(a, b, eps = 1e-9) {
+      if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+        return false;
+      }
+      for (let i = 0; i < a.length; i += 1) {
+        if (!Array.isArray(a[i]) || !Array.isArray(b[i]) || a[i].length !== b[i].length) {
+          return false;
+        }
+        for (let j = 0; j < a[i].length; j += 1) {
+          if (Math.abs((a[i][j] ?? 0) - (b[i][j] ?? 0)) > eps) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+
+    function estimateParallelStats(size, workers, levelMode) {
+      const w = Math.max(1, Math.min(7, Number(workers) || 1));
+      const levels = Math.max(1, Math.log2(size));
+      const topWaves = Math.ceil(7 / w);
+      const topSpeedup = 7 / topWaves;
+      if (levelMode === "recursive") {
+        const spanUnits = levels * topWaves;
+        const workUnits = (Math.pow(7, levels) - 1) / 6;
+        const speedup = workUnits / spanUnits;
+        return {
+          levels,
+          waves: topWaves,
+          workUnits,
+          spanUnits,
+          speedup,
+          efficiency: speedup / w
+        };
+      }
+      return {
+        levels,
+        waves: topWaves,
+        workUnits: 7,
+        spanUnits: topWaves,
+        speedup: topSpeedup,
+        efficiency: topSpeedup / w
+      };
     }
 
     function splitQuadrants(m) {
@@ -3552,10 +3848,111 @@ Both obtain shared secret S = 2.</div>
         status: "done"
       });
 
+      const naiveRun = multiplyNaiveNxN(A, B);
+      const finalCounters = { ...counters };
+      const multReduction = naiveRun.counters.multiplications > 0
+        ? ((naiveRun.counters.multiplications - finalCounters.multiplications) / naiveRun.counters.multiplications) * 100
+        : 0;
+      const matchesNaive = matricesAlmostEqual(finalMatrix, naiveRun.matrix);
+      const finalStep = steps[steps.length - 1];
+      finalStep.explanation = `Strassen pipeline finished. Final C = ${matrixToInlineString(finalMatrix)}. `
+        + `Naive baseline gives ${matrixToInlineString(naiveRun.matrix)} (${matchesNaive ? "match" : "mismatch"}). `
+        + `Multiplications: naive ${naiveRun.counters.multiplications}, Strassen ${finalCounters.multiplications}, `
+        + `reduction ${numberFmt(multReduction)}%.`;
+
       return {
         steps,
-        meta: { size, A, B, formulas: formulas.map((f) => f.formula) }
+        meta: {
+          size,
+          A,
+          B,
+          formulas: formulas.map((f) => f.formula),
+          comparison: {
+            naive: naiveRun.counters,
+            strassen: finalCounters,
+            multReduction,
+            resultMatch: matchesNaive,
+            naiveResult: naiveRun.matrix,
+            strassenResult: finalMatrix
+          }
+        }
       };
+    }
+
+    function renderProblemContext2() {
+      const size = state2.meta.size;
+      const domainProblem = size === 2
+        ? "Small convolution kernel check in image processing (2x2 operator composition)."
+        : "Batched transformation composition in graphics/ML pipelines (4x4 block multiply prototype).";
+      refs2.problemBox.innerHTML = `
+        <div class='insight-title'>Computational Problem Context</div>
+        <div><strong>Problem:</strong> Multiply two dense ${size}x${size} matrices that represent chained linear transforms.</div>
+        <div style='margin-top: 6px;'><strong>Concrete scenario:</strong> ${domainProblem}</div>
+        <div style='margin-top: 6px;'><strong>Why Strassen:</strong> Reduce block multiplications from 8 to 7 per recursive split, which lowers asymptotic multiplication cost on larger instances.</div>
+      `;
+    }
+
+    function renderComplexityDepth2() {
+      const size = state2.meta.size;
+      const levels = Math.max(1, Math.log2(size));
+      const workNaive = `${size}^3 = ${Math.pow(size, 3)}`;
+      const workStrassen = `${size}^log2(7) = ${numberFmt(Math.pow(size, Math.log2(7)))}`;
+      refs2.depthBox.innerHTML = `
+        <div class='insight-title'>Complexity and Depth Reasoning</div>
+        <div><strong>Recurrence:</strong> T(n) = 7T(n/2) + O(n^2), versus naive 8T(n/2) + O(n^2).</div>
+        <div style='margin-top: 6px;'><strong>Master theorem:</strong> T(n) = O(n^log2(7)) ≈ O(n^2.807).</div>
+        <div style='margin-top: 6px;'><strong>For current n=${size}:</strong> naive work estimate ${workNaive}, Strassen growth proxy ${workStrassen}.</div>
+        <div style='margin-top: 6px;'><strong>Depth:</strong> recursion depth = log2(n) = ${levels}. Practical implementations switch to classical multiply below a cutoff.</div>
+      `;
+    }
+
+    function renderComparison2() {
+      const cmp = state2.meta.comparison;
+      if (!cmp) {
+        refs2.cmpNaiveMul.textContent = "-";
+        refs2.cmpStrassenMul.textContent = "-";
+        refs2.cmpNaiveAdd.textContent = "-";
+        refs2.cmpStrassenAdd.textContent = "-";
+        refs2.cmpMulReduction.textContent = "-";
+        refs2.cmpParallelSpeedup.textContent = "-";
+        refs2.compareNote.textContent = "Build steps to compare operation counts for this exact matrix input.";
+        return;
+      }
+
+      refs2.cmpNaiveMul.textContent = numberFmt(cmp.naive.multiplications);
+      refs2.cmpStrassenMul.textContent = numberFmt(cmp.strassen.multiplications);
+      refs2.cmpNaiveAdd.textContent = numberFmt(cmp.naive.additions);
+      refs2.cmpStrassenAdd.textContent = numberFmt(cmp.strassen.additions);
+      refs2.cmpMulReduction.textContent = `${numberFmt(cmp.multReduction)}%`;
+      refs2.cmpMulReduction.className = `comparison-value ${cmp.multReduction > 0 ? "good" : "warn"}`;
+
+      const ok = cmp.resultMatch ? "Result match with naive baseline confirmed." : "Warning: mismatch against naive baseline.";
+      refs2.compareNote.textContent = `${ok} This comparison uses your exact current matrix input.`;
+    }
+
+    function renderParallelAnalysis2() {
+      const workers = Number(refs2.workerCount.value);
+      const mode = refs2.parallelLevel.value;
+      const stats = estimateParallelStats(state2.meta.size, workers, mode);
+      refs2.cmpParallelSpeedup.textContent = `${numberFmt(stats.speedup)}x`;
+      refs2.cmpParallelSpeedup.className = `comparison-value ${stats.speedup > 1 ? "good" : "warn"}`;
+
+      const modeLabel = mode === "recursive" ? "recursive work/span estimate" : "top-level P1..P7 schedule";
+      refs2.parallelBox.innerHTML = `
+        <div class='insight-title'>Parallel Work Distribution</div>
+        <div><strong>Mode:</strong> ${modeLabel}</div>
+        <div style='margin-top: 6px;'><strong>Workers:</strong> ${workers}, <strong>waves per level:</strong> ceil(7/${workers}) = ${stats.waves}</div>
+        <div style='margin-top: 6px;'><strong>Work units:</strong> ${numberFmt(stats.workUnits)}, <strong>span units:</strong> ${numberFmt(stats.spanUnits)}</div>
+        <div style='margin-top: 6px;'><strong>Estimated speedup:</strong> ${numberFmt(stats.speedup)}x, <strong>efficiency:</strong> ${numberFmt(stats.efficiency * 100)}%</div>
+      `;
+    }
+
+    function invalidateComparison2() {
+      state2.meta.comparison = null;
+      renderComparison2();
+      renderProblemContext2();
+      renderComplexityDepth2();
+      renderParallelAnalysis2();
     }
 
     function updateStatusBadge2() {
@@ -3815,6 +4212,10 @@ Both obtain shared secret S = 2.</div>
       renderMainSvg2(step);
       renderTree2(step);
       renderChart2();
+      renderProblemContext2();
+      renderComplexityDepth2();
+      renderComparison2();
+      renderParallelAnalysis2();
       renderLegend2();
       refs2.vizCaption.textContent = step.detail || "";
       if (shouldTrackHistory) {
@@ -3976,6 +4377,7 @@ Both obtain shared secret S = 2.</div>
       }
       renderMatrixInputs2();
       showError2([]);
+      invalidateComparison2();
     }
 
     function randomizeMatrices2() {
@@ -3984,12 +4386,14 @@ Both obtain shared secret S = 2.</div>
       const B = Array.from({ length: size }, () => Array.from({ length: size }, () => Math.floor(Math.random() * 9) - 2));
       writeMatrix("s2_a", A);
       writeMatrix("s2_b", B);
+      invalidateComparison2();
     }
 
     function applyIdentity2() {
       const size = Number(refs2.size.value);
       const I = Array.from({ length: size }, (_, i) => Array.from({ length: size }, (_, j) => (i === j ? 1 : 0)));
       writeMatrix("s2_a", I);
+      invalidateComparison2();
     }
 
     function bindEvents2() {
@@ -4003,6 +4407,7 @@ Both obtain shared secret S = 2.</div>
           state2.meta.B = [[1, 2, 1, 3], [0, 1, 4, 2], [2, 0, 1, 1], [1, 3, 2, 0]];
         }
         renderMatrixInputs2();
+        invalidateComparison2();
       });
 
       refs2.speedSlider.addEventListener("input", () => {
@@ -4024,6 +4429,8 @@ Both obtain shared secret S = 2.</div>
       refs2.preset3.addEventListener("click", () => applyPreset2(3));
       refs2.randomizeBtn.addEventListener("click", randomizeMatrices2);
       refs2.applyIdentityBtn.addEventListener("click", applyIdentity2);
+      refs2.workerCount.addEventListener("change", renderParallelAnalysis2);
+      refs2.parallelLevel.addEventListener("change", renderParallelAnalysis2);
     }
 
     function initialRender2() {
@@ -4036,6 +4443,10 @@ Both obtain shared secret S = 2.</div>
       renderExplanation2(null);
       renderTree2(null);
       renderChart2();
+      renderProblemContext2();
+      renderComplexityDepth2();
+      renderComparison2();
+      renderParallelAnalysis2();
       refs2.mainSvg.innerHTML = "<text x='550' y='230' text-anchor='middle' fill='var(--text-secondary)' font-size='14'>Build steps to start Strassen visualization.</text>";
       renderHistory2();
       updateControls2();
@@ -4050,8 +4461,10 @@ Both obtain shared secret S = 2.</div>
       speed: 1,
       timer: null,
       history: [],
+      tests: [],
       counters: { modExps: 0, squarings: 0, multiplications: 0 },
-      meta: { p: 23, g: 5, a: 6, b: 15 }
+      meta: { p: 23, g: 5, a: 6, b: 15, plaintext: "HELLO DIFFIE-HELLMAN" },
+      lastRuntimeMs: 0
     };
 
     const refs3 = {
@@ -4059,6 +4472,11 @@ Both obtain shared secret S = 2.</div>
       g: document.getElementById("s3_g"),
       a: document.getElementById("s3_a"),
       b: document.getElementById("s3_b"),
+      plaintext: document.getElementById("s3_plaintext"),
+      ciphertext: document.getElementById("s3_ciphertext"),
+      decrypted: document.getElementById("s3_decrypted"),
+      sessionKey: document.getElementById("s3_sessionKey"),
+      roundtripBadge: document.getElementById("s3_roundtripBadge"),
       validateBtn: document.getElementById("s3_validateBtn"),
       preset1: document.getElementById("s3_preset1"),
       preset2: document.getElementById("s3_preset2"),
@@ -4077,6 +4495,7 @@ Both obtain shared secret S = 2.</div>
       cntModExps: document.getElementById("s3_cntModExps"),
       cntSquarings: document.getElementById("s3_cntSquarings"),
       cntMultiplications: document.getElementById("s3_cntMultiplications"),
+      lastRuntimeMs: document.getElementById("s3_lastRuntimeMs"),
       vizCaption: document.getElementById("s3_vizCaption"),
       protocolSvg: document.getElementById("s3_protocolSvg"),
       legend: document.getElementById("s3_legend"),
@@ -4086,7 +4505,17 @@ Both obtain shared secret S = 2.</div>
       explanationTitle: document.getElementById("s3_explanationTitle"),
       explanationBody: document.getElementById("s3_explanationBody"),
       historyBody: document.getElementById("s3_historyBody"),
-      dlpBox: document.getElementById("s3_dlpBox")
+      dlpBox: document.getElementById("s3_dlpBox"),
+      randomCount: document.getElementById("s3_randomCount"),
+      testPresetBtn: document.getElementById("s3_testPresetBtn"),
+      testBoundaryBtn: document.getElementById("s3_testBoundaryBtn"),
+      testRandomBtn: document.getElementById("s3_testRandomBtn"),
+      clearTestsBtn: document.getElementById("s3_clearTestsBtn"),
+      testSummary: document.getElementById("s3_testSummary"),
+      testBody: document.getElementById("s3_testBody"),
+      attackScenario: document.getElementById("s3_attackScenario"),
+      runAttackBtn: document.getElementById("s3_runAttackBtn"),
+      attackResult: document.getElementById("s3_attackResult")
     };
 
     const pseudocode3 = [
@@ -4098,17 +4527,21 @@ Both obtain shared secret S = 2.</div>
       { line: 6, code: "  S_Alice = MOD-EXP(B, a, p)", tip: "Alice derives shared secret from B." },
       { line: 7, code: "  S_Bob = MOD-EXP(A, b, p)", tip: "Bob derives shared secret from A." },
       { line: 8, code: "  ASSERT S_Alice == S_Bob", tip: "Both sides must match." },
-      { line: 9, code: "  RETURN S_Alice", tip: "Final shared secret." },
-      { line: 11, code: "MOD-EXP(base, exp, mod)", tip: "Square-and-multiply subroutine." },
-      { line: 12, code: "  result = 1", tip: "Initialize accumulator." },
-      { line: 13, code: "  base = base mod mod", tip: "Reduce base first." },
-      { line: 14, code: "  WHILE exp > 0", tip: "Process exponent bits." },
-      { line: 15, code: "    IF exp is ODD", tip: "Odd exponent means multiply result." },
-      { line: 16, code: "      result = (result * base) mod mod", tip: "Multiply by current base." },
-      { line: 17, code: "    base = (base * base) mod mod", tip: "Square the base." },
-      { line: 18, code: "    exp = exp >> 1", tip: "Shift to next bit." },
-      { line: 19, code: "  END WHILE", tip: "Loop ends when exponent becomes 0." },
-      { line: 20, code: "  RETURN result", tip: "Return modular power." }
+      { line: 9, code: "  K = S_Alice mod 95", tip: "Map shared secret into printable-shift key." },
+      { line: 10, code: "  C = SHIFT-ENC(plaintext, K)", tip: "Encrypt message with derived key." },
+      { line: 11, code: "  P_REC = SHIFT-DEC(C, K)", tip: "Decrypt using the same key." },
+      { line: 12, code: "  ASSERT P_REC == plaintext", tip: "End-to-end correctness check." },
+      { line: 13, code: "  RETURN S_Alice", tip: "Final shared secret output." },
+      { line: 15, code: "MOD-EXP(base, exp, mod)", tip: "Square-and-multiply subroutine." },
+      { line: 16, code: "  result = 1", tip: "Initialize accumulator." },
+      { line: 17, code: "  base = base mod mod", tip: "Reduce base first." },
+      { line: 18, code: "  WHILE exp > 0", tip: "Process exponent bits." },
+      { line: 19, code: "    IF exp is ODD", tip: "Odd exponent means multiply result." },
+      { line: 20, code: "      result = (result * base) mod mod", tip: "Multiply by current base." },
+      { line: 21, code: "    base = (base * base) mod mod", tip: "Square the base." },
+      { line: 22, code: "    exp = exp >> 1", tip: "Shift to next bit." },
+      { line: 23, code: "  END WHILE", tip: "Loop ends when exponent becomes 0." },
+      { line: 24, code: "  RETURN result", tip: "Return modular power." }
     ];
 
     function showError3(msgs) {
@@ -4150,7 +4583,8 @@ Both obtain shared secret S = 2.</div>
         p: Number(refs3.p.value),
         g: Number(refs3.g.value),
         a: Number(refs3.a.value),
-        b: Number(refs3.b.value)
+        b: Number(refs3.b.value),
+        plaintext: refs3.plaintext.value
       };
     }
 
@@ -4172,7 +4606,55 @@ Both obtain shared secret S = 2.</div>
       if (!Number.isInteger(input.b) || input.b < 1 || input.b > input.p - 2) {
         issues.push("b must satisfy 1 <= b <= p-2.");
       }
+      if (typeof input.plaintext !== "string" || input.plaintext.length < 1) {
+        issues.push("Plaintext message must not be empty.");
+      }
+      if (typeof input.plaintext === "string" && input.plaintext.length > 120) {
+        issues.push("Plaintext message must be at most 120 characters.");
+      }
       return issues;
+    }
+
+    function shiftEncrypt(text, key) {
+      const printableStart = 32;
+      const printableCount = 95;
+      const k = ((key % printableCount) + printableCount) % printableCount;
+      return Array.from(text).map((ch) => {
+        const code = ch.charCodeAt(0);
+        if (code < printableStart || code >= printableStart + printableCount) {
+          return ch;
+        }
+        const shifted = printableStart + ((code - printableStart + k) % printableCount);
+        return String.fromCharCode(shifted);
+      }).join("");
+    }
+
+    function shiftDecrypt(text, key) {
+      const printableStart = 32;
+      const printableCount = 95;
+      const k = ((key % printableCount) + printableCount) % printableCount;
+      return Array.from(text).map((ch) => {
+        const code = ch.charCodeAt(0);
+        if (code < printableStart || code >= printableStart + printableCount) {
+          return ch;
+        }
+        const shifted = printableStart + ((code - printableStart - k + printableCount) % printableCount);
+        return String.fromCharCode(shifted);
+      }).join("");
+    }
+
+    function modExpValue(base, exp, mod) {
+      let currentBase = ((base % mod) + mod) % mod;
+      let currentExp = exp;
+      let result = 1;
+      while (currentExp > 0) {
+        if (currentExp % 2 === 1) {
+          result = (result * currentBase) % mod;
+        }
+        currentBase = (currentBase * currentBase) % mod;
+        currentExp = Math.floor(currentExp / 2);
+      }
+      return result;
     }
 
     function modExpWithTrace(base, exp, mod, counters) {
@@ -4211,6 +4693,10 @@ Both obtain shared secret S = 2.</div>
       let publicB = null;
       let secretAlice = null;
       let secretBob = null;
+      let sessionKeyShift = null;
+      let ciphertext = "";
+      let decryptedText = "";
+      let roundtripOk = null;
 
       function pushStep(payload) {
         steps.push({
@@ -4227,6 +4713,11 @@ Both obtain shared secret S = 2.</div>
           publicB,
           secretAlice,
           secretBob,
+          sessionKeyShift,
+          plaintext: input.plaintext,
+          ciphertext,
+          decryptedText,
+          roundtripOk,
           sharedSecret: (secretAlice !== null && secretBob !== null && secretAlice === secretBob) ? secretAlice : null,
           counters: { ...counters },
           status: payload.status || "ready"
@@ -4255,7 +4746,7 @@ Both obtain shared secret S = 2.</div>
           publicA = traceA.value;
         }
         pushStep({
-          pseudoLine: idx === 0 ? 3 : (r.bit === 1 ? 16 : 17),
+          pseudoLine: idx === 0 ? 3 : (r.bit === 1 ? 20 : 21),
           phase: "alice_compute_A",
           action: "Alice Computes A",
           detail: `A = g^a mod p = ${input.g}^${input.a} mod ${input.p}`,
@@ -4280,7 +4771,7 @@ Both obtain shared secret S = 2.</div>
           publicB = traceB.value;
         }
         pushStep({
-          pseudoLine: idx === 0 ? 4 : (r.bit === 1 ? 16 : 17),
+          pseudoLine: idx === 0 ? 4 : (r.bit === 1 ? 20 : 21),
           phase: "bob_compute_B",
           action: "Bob Computes B",
           detail: `B = g^b mod p = ${input.g}^${input.b} mod ${input.p}`,
@@ -4305,7 +4796,7 @@ Both obtain shared secret S = 2.</div>
           secretAlice = traceAliceSecret.value;
         }
         pushStep({
-          pseudoLine: idx === 0 ? 6 : (r.bit === 1 ? 16 : 17),
+          pseudoLine: idx === 0 ? 6 : (r.bit === 1 ? 20 : 21),
           phase: "alice_compute_secret",
           action: "Alice Computes Shared Secret",
           detail: `S_Alice = B^a mod p = ${publicB}^${input.a} mod ${input.p}`,
@@ -4321,7 +4812,7 @@ Both obtain shared secret S = 2.</div>
           secretBob = traceBobSecret.value;
         }
         pushStep({
-          pseudoLine: idx === 0 ? 7 : (r.bit === 1 ? 16 : 17),
+          pseudoLine: idx === 0 ? 7 : (r.bit === 1 ? 20 : 21),
           phase: "bob_compute_secret",
           action: "Bob Computes Shared Secret",
           detail: `S_Bob = A^b mod p = ${publicA}^${input.b} mod ${input.p}`,
@@ -4341,12 +4832,50 @@ Both obtain shared secret S = 2.</div>
           : "Mismatch detected (should not happen for valid DH steps)."
       });
 
+      sessionKeyShift = ((secretAlice % 95) + 95) % 95;
       pushStep({
         pseudoLine: 9,
-        phase: "eve_view",
-        action: "Eve Observation",
-        detail: `Eve sees g=${input.g}, p=${input.p}, A=${publicA}, B=${publicB}.`,
-        explanation: "Eve still lacks a and b. Recovering them from A or B is a discrete logarithm problem.",
+        phase: "derive_key",
+        action: "Derive Session Key",
+        detail: `K = S mod 95 = ${secretAlice} mod 95 = ${sessionKeyShift}`,
+        explanation: "Use the shared secret as key material to derive a printable-shift session key."
+      });
+
+      ciphertext = shiftEncrypt(input.plaintext, sessionKeyShift);
+      pushStep({
+        pseudoLine: 10,
+        phase: "encrypt_message",
+        action: "Encrypt Message",
+        detail: `C = ENC(P, K) with K=${sessionKeyShift}`,
+        explanation: `Plaintext <code>${escapeHtml(input.plaintext)}</code> encrypts to <code>${escapeHtml(ciphertext)}</code>.`
+      });
+
+      decryptedText = shiftDecrypt(ciphertext, sessionKeyShift);
+      pushStep({
+        pseudoLine: 11,
+        phase: "decrypt_message",
+        action: "Decrypt Message",
+        detail: "P_REC = DEC(C, K)",
+        explanation: `Ciphertext decrypts back to <code>${escapeHtml(decryptedText)}</code>.`
+      });
+
+      roundtripOk = decryptedText === input.plaintext;
+      pushStep({
+        pseudoLine: 12,
+        phase: "verify_roundtrip",
+        action: "Verify Decryption Roundtrip",
+        detail: roundtripOk ? "Recovered plaintext equals original." : "Roundtrip failed.",
+        explanation: roundtripOk
+          ? "Correctness confirmed: decrypt(encrypt(plaintext)) = plaintext."
+          : "Roundtrip mismatch detected."
+      });
+
+      pushStep({
+        pseudoLine: 13,
+        phase: "finalize",
+        action: "Finalize Session Key",
+        detail: `Shared secret ready for secure session setup: S=${secretAlice}.`,
+        explanation: "Eve sees public values but still faces the discrete logarithm barrier to recover private exponents.",
         status: "done"
       });
 
@@ -4374,10 +4903,16 @@ Both obtain shared secret S = 2.</div>
         refs3.g,
         refs3.a,
         refs3.b,
+        refs3.plaintext,
         refs3.validateBtn,
         refs3.preset1,
         refs3.preset2,
-        refs3.preset3
+        refs3.preset3,
+        refs3.testPresetBtn,
+        refs3.testBoundaryBtn,
+        refs3.testRandomBtn,
+        refs3.clearTestsBtn,
+        refs3.runAttackBtn
       ].forEach((el) => {
         el.disabled = disabled;
       });
@@ -4400,6 +4935,39 @@ Both obtain shared secret S = 2.</div>
       refs3.cntModExps.textContent = counters.modExps;
       refs3.cntSquarings.textContent = counters.squarings;
       refs3.cntMultiplications.textContent = counters.multiplications;
+      refs3.lastRuntimeMs.textContent = state3.lastRuntimeMs.toFixed(2);
+    }
+
+    function renderMessageOutputs3(step) {
+      if (!step) {
+        refs3.ciphertext.value = "";
+        refs3.decrypted.value = "";
+        refs3.sessionKey.textContent = "-";
+        refs3.roundtripBadge.textContent = "No Roundtrip Yet";
+        refs3.roundtripBadge.style.color = "var(--text-secondary)";
+        refs3.roundtripBadge.style.background = "rgba(139,148,158,0.10)";
+        refs3.roundtripBadge.style.borderColor = "var(--text-secondary)";
+        return;
+      }
+      refs3.ciphertext.value = step.ciphertext || "";
+      refs3.decrypted.value = step.decryptedText || "";
+      refs3.sessionKey.textContent = step.sessionKeyShift === null ? "-" : step.sessionKeyShift;
+      if (step.roundtripOk === null) {
+        refs3.roundtripBadge.textContent = "Pending";
+        refs3.roundtripBadge.style.color = "var(--accent-yellow)";
+        refs3.roundtripBadge.style.background = "rgba(210,153,34,0.12)";
+        refs3.roundtripBadge.style.borderColor = "var(--accent-yellow)";
+      } else if (step.roundtripOk) {
+        refs3.roundtripBadge.textContent = "Roundtrip PASS";
+        refs3.roundtripBadge.style.color = "var(--accent-green)";
+        refs3.roundtripBadge.style.background = "rgba(63,185,80,0.12)";
+        refs3.roundtripBadge.style.borderColor = "var(--accent-green)";
+      } else {
+        refs3.roundtripBadge.textContent = "Roundtrip FAIL";
+        refs3.roundtripBadge.style.color = "var(--accent-red)";
+        refs3.roundtripBadge.style.background = "rgba(248,81,73,0.12)";
+        refs3.roundtripBadge.style.borderColor = "var(--accent-red)";
+      }
     }
 
     function renderPseudocode3(activeLine) {
@@ -4417,7 +4985,7 @@ Both obtain shared secret S = 2.</div>
     function renderExplanation3(step) {
       if (!step) {
         refs3.explanationTitle.textContent = "Step 0 - Idle";
-        refs3.explanationBody.textContent = "Provide p, g, a, b then click Build Steps.";
+        refs3.explanationBody.textContent = "Provide p, g, a, b, plaintext then click Build Steps.";
         return;
       }
       refs3.explanationTitle.textContent = `Step ${state3.currentStep + 1} - ${step.action}`;
@@ -4562,6 +5130,185 @@ Both obtain shared secret S = 2.</div>
       `;
     }
 
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function randomText(length) {
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let text = "";
+      for (let i = 0; i < length; i += 1) {
+        text += alphabet[randomInt(0, alphabet.length - 1)];
+      }
+      return text;
+    }
+
+    function runDhTestCase(suite, caseName, input, expectValid = true) {
+      const issues = validateInput3(input);
+      if (!expectValid) {
+        return {
+          suite,
+          caseName,
+          pass: issues.length > 0,
+          runtimeMs: 0,
+          sharedOk: false,
+          roundtripOk: false,
+          counters: { modExps: 0, squarings: 0, multiplications: 0 },
+          note: issues.length > 0 ? `Validation blocked as expected: ${issues[0]}` : "Expected validation failure did not occur."
+        };
+      }
+      if (issues.length) {
+        return {
+          suite,
+          caseName,
+          pass: false,
+          runtimeMs: 0,
+          sharedOk: false,
+          roundtripOk: false,
+          counters: { modExps: 0, squarings: 0, multiplications: 0 },
+          note: `Invalid input: ${issues[0]}`
+        };
+      }
+
+      const t0 = performance.now();
+      const built = buildDHSteps(input);
+      const runtimeMs = performance.now() - t0;
+      const verifyStep = built.steps.find((s) => s.phase === "verify");
+      const roundtripStep = built.steps.find((s) => s.phase === "verify_roundtrip");
+      const finalStep = built.steps[built.steps.length - 1];
+      const sharedOk = Boolean(verifyStep && verifyStep.secretAlice === verifyStep.secretBob);
+      const roundtripOk = Boolean(roundtripStep && roundtripStep.roundtripOk);
+
+      return {
+        suite,
+        caseName,
+        pass: sharedOk && roundtripOk,
+        runtimeMs,
+        sharedOk,
+        roundtripOk,
+        counters: finalStep ? finalStep.counters : { modExps: 0, squarings: 0, multiplications: 0 },
+        note: sharedOk && roundtripOk
+          ? "All correctness checks passed."
+          : "Shared-key or roundtrip verification failed."
+      };
+    }
+
+    function renderTestResults3() {
+      if (!state3.tests.length) {
+        refs3.testBody.innerHTML = "<tr><td colspan='5'>No test runs yet.</td></tr>";
+        refs3.testSummary.textContent = "No tests executed.";
+        return;
+      }
+
+      const passCount = state3.tests.filter((r) => r.pass).length;
+      refs3.testSummary.textContent = `Executed ${state3.tests.length} tests: ${passCount} PASS, ${state3.tests.length - passCount} FAIL.`;
+      refs3.testBody.innerHTML = state3.tests.map((r, idx) => {
+        const verdict = r.pass ? "PASS" : "FAIL";
+        const verdictColor = r.pass ? "var(--accent-green)" : "var(--accent-red)";
+        return `
+          <tr title='${escapeHtml(r.note)}'>
+            <td>${idx + 1}</td>
+            <td>${escapeHtml(r.suite)}</td>
+            <td>${escapeHtml(r.caseName)}</td>
+            <td style='color:${verdictColor}; font-weight:700;'>${verdict}</td>
+            <td>${r.runtimeMs.toFixed(2)} ms</td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function appendTestResults3(results) {
+      state3.tests.push(...results);
+      if (state3.tests.length > MAX_HISTORY) {
+        state3.tests = state3.tests.slice(state3.tests.length - MAX_HISTORY);
+      }
+      renderTestResults3();
+    }
+
+    function runPresetSuite3() {
+      const cases = [
+        { caseName: "Preset 1", input: { p: 23, g: 5, a: 6, b: 15, plaintext: "HELLO DH" }, expectValid: true },
+        { caseName: "Preset 2", input: { p: 97, g: 5, a: 22, b: 31, plaintext: "NETWORK SESSION" }, expectValid: true },
+        { caseName: "Preset 3", input: { p: 47, g: 7, a: 10, b: 14, plaintext: "CRYPTO CLASS" }, expectValid: true }
+      ];
+      appendTestResults3(cases.map((c) => runDhTestCase("Preset", c.caseName, c.input, c.expectValid)));
+    }
+
+    function runBoundarySuite3() {
+      const cases = [
+        { caseName: "Small Prime", input: { p: 5, g: 2, a: 1, b: 3, plaintext: "A" }, expectValid: true },
+        { caseName: "Larger Prime", input: { p: 997, g: 7, a: 321, b: 654, plaintext: "BOUNDARY CHECK" }, expectValid: true },
+        { caseName: "Non-prime p", input: { p: 21, g: 5, a: 4, b: 7, plaintext: "INVALID P" }, expectValid: false },
+        { caseName: "Empty Message", input: { p: 23, g: 5, a: 6, b: 15, plaintext: "" }, expectValid: false }
+      ];
+      appendTestResults3(cases.map((c) => runDhTestCase("Boundary", c.caseName, c.input, c.expectValid)));
+    }
+
+    function runRandomSuite3() {
+      const primes = [23, 47, 59, 83, 97, 131, 173, 239, 263, 383, 509];
+      const requested = Number(refs3.randomCount.value);
+      const count = Math.max(1, Math.min(20, Number.isFinite(requested) ? requested : 6));
+      const cases = Array.from({ length: count }, (_, i) => {
+        const p = primes[randomInt(0, primes.length - 1)];
+        return {
+          caseName: `R${i + 1} (p=${p})`,
+          input: {
+            p,
+            g: randomInt(2, p - 2),
+            a: randomInt(1, p - 2),
+            b: randomInt(1, p - 2),
+            plaintext: randomText(randomInt(5, 14))
+          },
+          expectValid: true
+        };
+      });
+      appendTestResults3(cases.map((c) => runDhTestCase("Random", c.caseName, c.input, c.expectValid)));
+    }
+
+    function clearTestResults3() {
+      state3.tests = [];
+      renderTestResults3();
+    }
+
+    function runAttackScenario3() {
+      const input = collectInput3();
+      const issues = validateInput3(input);
+      if (issues.length) {
+        refs3.attackResult.textContent = `Cannot run security scenario: ${issues[0]}`;
+        return;
+      }
+
+      const scenario = refs3.attackScenario.value;
+      if (scenario === "mitm") {
+        const publicA = modExpValue(input.g, input.a, input.p);
+        const publicB = modExpValue(input.g, input.b, input.p);
+        const eve1 = Math.min(input.p - 2, 3);
+        const eve2 = Math.min(input.p - 2, 5);
+        const fakeToBob = modExpValue(input.g, eve1, input.p);
+        const fakeToAlice = modExpValue(input.g, eve2, input.p);
+        const aliceKey = modExpValue(fakeToAlice, input.a, input.p);
+        const bobKey = modExpValue(fakeToBob, input.b, input.p);
+        const eveWithAlice = modExpValue(publicA, eve2, input.p);
+        const eveWithBob = modExpValue(publicB, eve1, input.p);
+        refs3.attackResult.innerHTML = `
+          <div><strong>MITM Result:</strong> Alice and Bob do not share one key anymore.</div>
+          <div style='margin-top:6px;'>Alice key = <code>${aliceKey}</code>, Bob key = <code>${bobKey}</code> (usually different).</div>
+          <div>Eve establishes two keys: with Alice <code>${eveWithAlice}</code>, with Bob <code>${eveWithBob}</code>.</div>
+          <div style='margin-top:6px;'>Takeaway: DH needs authentication (certificates/signatures) to resist MITM.</div>
+        `;
+        return;
+      }
+
+      const weakA = modExpValue(1, input.a, input.p);
+      const weakB = modExpValue(1, input.b, input.p);
+      const weakS = modExpValue(weakB, input.a, input.p);
+      refs3.attackResult.innerHTML = `
+        <div><strong>Weak Generator Result:</strong> using <code>g=1</code> collapses the key space.</div>
+        <div style='margin-top:6px;'>A = <code>${weakA}</code>, B = <code>${weakB}</code>, shared secret = <code>${weakS}</code> for almost any secrets.</div>
+        <div>Takeaway: choose a strong generator and safe parameters to avoid trivial keys.</div>
+      `;
+    }
+
     function renderStep3(index, shouldTrackHistory = true) {
       if (index < 0 || index >= state3.totalSteps) {
         return;
@@ -4569,6 +5316,7 @@ Both obtain shared secret S = 2.</div>
       state3.currentStep = index;
       const step = state3.steps[index];
       renderStats3(step);
+      renderMessageOutputs3(step);
       renderPseudocode3(step.pseudoLine);
       renderExplanation3(step);
       renderProtocolSvg3(step);
@@ -4673,18 +5421,21 @@ Both obtain shared secret S = 2.</div>
         refs3.g.value = 5;
         refs3.a.value = 6;
         refs3.b.value = 15;
+        refs3.plaintext.value = "HELLO DIFFIE-HELLMAN";
       }
       if (index === 2) {
         refs3.p.value = 97;
         refs3.g.value = 5;
         refs3.a.value = 22;
         refs3.b.value = 31;
+        refs3.plaintext.value = "SECURE CHANNEL SETUP";
       }
       if (index === 3) {
         refs3.p.value = 47;
         refs3.g.value = 7;
         refs3.a.value = 10;
         refs3.b.value = 14;
+        refs3.plaintext.value = "CLASSROOM DEMO";
       }
       showError3([]);
     }
@@ -4698,7 +5449,9 @@ Both obtain shared secret S = 2.</div>
         showError3(issues);
         return;
       }
+      const t0 = performance.now();
       const built = buildDHSteps(input);
+      state3.lastRuntimeMs = performance.now() - t0;
       state3.steps = built.steps;
       state3.totalSteps = built.steps.length;
       state3.currentStep = 0;
@@ -4719,7 +5472,7 @@ Both obtain shared secret S = 2.</div>
           return;
         }
         showError3([]);
-        refs3.vizCaption.textContent = "Input validation passed. Click Build Steps to generate the full protocol trace.";
+        refs3.vizCaption.textContent = "Input validation passed. Click Build Steps to generate key exchange plus encrypt/decrypt trace.";
       });
 
       refs3.speedSlider.addEventListener("input", () => {
@@ -4739,6 +5492,11 @@ Both obtain shared secret S = 2.</div>
       refs3.preset1.addEventListener("click", () => applyPreset3(1));
       refs3.preset2.addEventListener("click", () => applyPreset3(2));
       refs3.preset3.addEventListener("click", () => applyPreset3(3));
+      refs3.testPresetBtn.addEventListener("click", runPresetSuite3);
+      refs3.testBoundaryBtn.addEventListener("click", runBoundarySuite3);
+      refs3.testRandomBtn.addEventListener("click", runRandomSuite3);
+      refs3.clearTestsBtn.addEventListener("click", clearTestResults3);
+      refs3.runAttackBtn.addEventListener("click", runAttackScenario3);
     }
 
     function initialRender3() {
@@ -4746,12 +5504,14 @@ Both obtain shared secret S = 2.</div>
       refs3.speedLabel.textContent = `${SPEED_MAP[Number(refs3.speedSlider.value)]}x`;
       renderLegend3();
       renderStats3(null);
+      renderMessageOutputs3(null);
       renderPseudocode3(-1);
       renderExplanation3(null);
       renderProtocolSvg3(null);
       renderModExpTable3(null);
       renderMixSvg3(null);
       renderDlpBox3(null);
+      renderTestResults3();
       renderHistory3();
       updateControls3();
     }
